@@ -25,8 +25,6 @@ public class csPlayerBasic : MonoBehaviour {
             GameOver();
         if (maxHealth <= health)
             health = maxHealth;
-
-        SetHealthText();
         Move();
         Fire();
     }
