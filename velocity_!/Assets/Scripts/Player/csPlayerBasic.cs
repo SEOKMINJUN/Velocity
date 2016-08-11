@@ -22,10 +22,7 @@ public class csPlayerBasic : MonoBehaviour {
     void Update () {
 
         if (health <= 0)
-        {
-            StartCoroutine("GameOver", (int)Time.fixedTime);
-            StopCoroutine("GameOver");
-        }
+            GameOver();
         if (maxHealth <= health)
             health = maxHealth;
 
@@ -113,11 +110,14 @@ public class csPlayerBasic : MonoBehaviour {
         healthText.text = "Health : " + health;
     }
 
-    IEnumerator GameOver(int time)
-    {
+    void GameOver()
+    { 
+        int time = (int)Time.fixedTime;
+        
         gameoverText.text = "Game Over! \nYour Time : " + time.ToString() + "sec.";
         Destroy(enemyCreate);
         gameObject.transform.Translate(new Vector3(10000f, 10000f, 0f));
-        yield return null;
+        healthText.text = "Health : 0";
+        Damage(-10);
     }
 }
